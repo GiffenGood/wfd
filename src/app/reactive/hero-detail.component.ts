@@ -1,5 +1,5 @@
-import { heroes,Address } from './data-model';
-import { Component } from '@angular/core';
+import { heroes,Address, Hero } from './data-model';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -11,15 +11,19 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 })
 export class HeroDetailComponent {
     heroForm: FormGroup;
+    @Input()  hero : Hero;
     constructor(private fb: FormBuilder) {
         this.createForm();
-        this.setValues();
+        this.setValues(heroes[0]);
     }
 
-    setValues(){
-        let hero = heroes[0];
-        
-        this.heroForm.patchValue({
+    ngOnChanges(){
+        console.log('change');
+        this.setValues(this.hero);
+    }
+
+    setValues(hero : Hero){
+        this.heroForm.reset({
             name : hero.name,
             power : hero.power,
             sidekick : hero.sidekick,

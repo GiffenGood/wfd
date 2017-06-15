@@ -1,3 +1,4 @@
+import { HeroListComponent } from './reactive/hero-list.component';
 import { HeroDetailComponent } from './reactive/hero-detail.component';
 import { HeroFormComponent } from './hero-form.component';
 import { AppRoutingModule } from './routing.module';
@@ -12,7 +13,8 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     HeroFormComponent,
-    HeroDetailComponent
+    HeroListComponent,
+    HeroDetailComponent,
   ],
   
   imports: [
