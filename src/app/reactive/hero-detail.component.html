@@ -1,5 +1,9 @@
-<h2>Hero Detail</h2>
-<h3><i>FormControl in a FormGroup</i></h3>
+<div class="row">
+    <h2 class="col-md-3">Hero Detail</h2>
+    <div class="col-xs-offset-8 col-md-1">
+        <button class="btn btn-default" (click)="doClear()">Clear</button>
+    </div>
+</div>
 <form [formGroup]="heroForm" novalidate>
     <div class="form-group">
         <label class="center-block">Name:

@@ -1,7 +1,6 @@
 import { heroes, Hero } from './data-model';
 import { Component, Input } from '@angular/core';
 
-
 @Component({
     selector : 'hero-list',
     template : `
@@ -11,8 +10,11 @@ import { Component, Input } from '@angular/core';
                 {{hero.name}}
             </li>
         </ul>
-        <hero-detail *ngIf="selectedHero" [hero]="selectedHero"></hero-detail>
-    `
+        <hero-detail *ngIf="selectedHero" [hero]="selectedHero" (clearHero)="select($event)"></hero-detail>
+    `,
+    styles : [
+        'li { cursor: pointer}' 
+    ]
 })
 export class HeroListComponent{
     heroes : Hero[];

@@ -1,6 +1,7 @@
 import { heroes,Address, Hero } from './data-model';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { EventEmitter } from "@angular/core";
 
 @Component({
     selector: 'hero-detail',
@@ -12,9 +13,15 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 export class HeroDetailComponent {
     heroForm: FormGroup;
     @Input()  hero : Hero;
+    @Output() clearHero = new EventEmitter();
+    
     constructor(private fb: FormBuilder) {
         this.createForm();
         this.setValues(heroes[0]);
+    }
+
+    doClear(){
+        this.clearHero.emit(null);
     }
 
     ngOnChanges(){
