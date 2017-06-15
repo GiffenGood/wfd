@@ -1,21 +1,24 @@
+import { HeroDetailComponent } from './reactive/hero-detail.component';
 import { HeroFormComponent } from './hero-form.component';
 import { AppRoutingModule } from './routing.module';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroFormComponent
+    HeroFormComponent,
+    HeroDetailComponent
   ],
   
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
 
   ],
