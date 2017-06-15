@@ -2,6 +2,8 @@ export class Hero {
   id = 0;
   name = '';
   addresses: Address[];
+  power : string
+  sidekick : boolean;
 }
 
 export class Address {
@@ -15,6 +17,8 @@ export const heroes: Hero[] = [
   {
     id: 1,
     name: 'Whirlwind',
+    power : 'flying',
+    sidekick : false,
     addresses: [
       {street: '123 Main',  city: 'Anywhere', state: 'CA',  zip: '94801'},
       {street: '456 Maple', city: 'Somewhere', state: 'VA', zip: '23226'},
@@ -23,6 +27,8 @@ export const heroes: Hero[] = [
   {
     id: 2,
     name: 'Bombastic',
+    power :'exageration',
+    sidekick : true,
     addresses: [
       {street: '789 Elm',  city: 'Smallville', state: 'OH',  zip: '04501'},
     ]
@@ -30,6 +36,8 @@ export const heroes: Hero[] = [
   {
     id: 3,
     name: 'Magneta',
+    power : 'Magnetism',
+    sidekick : false,
     addresses: [ ]
   },
 ];
