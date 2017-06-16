@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector : 'hero-list',
     template : `
-        <h1>Hero List</h1>
+        <h1>Hero List </h1> <a routerLink="/reactive">Dashboard</a>
         <ul>
             <li *ngFor="let hero of heroes" (click)="select(hero)" >
                 {{hero.name}}
@@ -25,7 +25,6 @@ export class HeroListComponent{
     }
 
     select(hero : Hero){
-        console.log('here',hero);
         this.selectedHero = hero;
     }
 }

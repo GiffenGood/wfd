@@ -23,7 +23,6 @@ export class HeroFormComponent {
   submitted = false;
 
   onSubmit(form: f.FormControl) {
-    console.log(this.heroForm.pristine);
     this.submitted = true;
   }
 
@@ -42,7 +41,6 @@ export class HeroFormComponent {
   formChanged() {
     if (this.currentForm === this.heroForm) { return; }
     this.heroForm = this.currentForm;
-    console.log(this.heroForm);
     if (this.heroForm) {
       this.heroForm.valueChanges
         .subscribe(data => this.onValueChanged(data));

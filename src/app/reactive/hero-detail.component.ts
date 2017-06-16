@@ -1,6 +1,6 @@
-import { heroes,Address, Hero } from './data-model';
+import { heroes, Address, Hero } from './data-model';
 import { Component, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { EventEmitter } from "@angular/core";
 
 @Component({
@@ -12,36 +12,63 @@ import { EventEmitter } from "@angular/core";
 })
 export class HeroDetailComponent {
     heroForm: FormGroup;
-    @Input()  hero : Hero;
+    @Input() hero: Hero;
     @Output() clearHero = new EventEmitter();
-    
+
     constructor(private fb: FormBuilder) {
         this.createForm();
         this.setValues(heroes[0]);
+        this.logNameChange();
     }
 
-    doClear(){
+    nameChangeLog: string[] = [];
+    logNameChange() {
+        const nameControl = this.heroForm.get('name');
+        nameControl.valueChanges.forEach(
+            (value: string) => this.nameChangeLog.push(value)
+        );
+    }
+
+    doClear() {
         this.clearHero.emit(null);
     }
 
-    ngOnChanges(){
-        console.log('change');
+    ngOnChanges() {
         this.setValues(this.hero);
+        this.test(this.hero);
     }
 
-    setValues(hero : Hero){
+    test({name, power}){
+        console.log(name,power);
+    }
+
+    setValues(hero: Hero) {
         this.heroForm.reset({
-            name : hero.name,
-            power : hero.power,
-            sidekick : hero.sidekick,
-            address : hero.addresses[0] || new Address()
+            name: hero.name,
+            power: hero.power,
+            sidekick: hero.sidekick
         });
+        this.setAddresses(hero.addresses);
+    }
+
+    setAddresses(addresses: Address[]) {
+        const addressFGs = addresses.map(address => this.fb.group(address));
+        const addressFormArray = this.fb.array(addressFGs);
+        this.heroForm.setControl('secretLairs', addressFormArray);
+    }
+
+    get secretLairs(): FormArray {
+        return this.heroForm.get('secretLairs') as FormArray;
+    };
+
+    addLair() {
+        this.secretLairs.push(this.fb.group(new Address()));
     }
 
     createForm() {
         this.heroForm = this.fb.group({ // <-- the parent FormGroup
             name: ['', Validators.required],
-            address: this.fb.group(new Address()),
+            secretLairs: this.fb.array([]), // <-- secretLairs as an empty FormArray
             power: '',
             sidekick: ''
         });
