@@ -10,7 +10,9 @@ import { Component, Input } from '@angular/core';
                 {{hero.name}}
             </li>
         </ul>
-        <hero-detail *ngIf="selectedHero" [hero]="selectedHero" (clearHero)="select($event)"></hero-detail>
+        <collapsible-well *ngIf="selectedHero" [title]="selectedHero?.name">
+            <hero-detail [hero]="selectedHero" (clearHero)="select($event)"></hero-detail>
+        </collapsible-well>
     `,
     styles : [
         'li { cursor: pointer}' 

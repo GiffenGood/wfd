@@ -1,5 +1,5 @@
-import { HeroListComponent } from './reactive/hero-list.component';
-import { HeroDetailComponent } from './reactive/hero-detail.component';
+import * as r from './reactive';
+import * as c from './common';
 import { HeroFormComponent } from './hero-form.component';
 import { AppRoutingModule } from './routing.module';
 import { RouterModule,RouterLink } from '@angular/router';
@@ -13,8 +13,9 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent,
     HeroFormComponent,
-    HeroListComponent,
-    HeroDetailComponent,
+    r.HeroListComponent,
+    r.HeroDetailComponent,
+    c.CollapsibleWell
   ],
   
   imports: [
